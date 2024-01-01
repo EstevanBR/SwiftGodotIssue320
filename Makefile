@@ -13,6 +13,3 @@ deploy:
 	echo "deploy the new libraries to res://bin"
 	cp .build/debug/libSwiftGodot.dylib ./Sources/MyGame/Project/bin
 	cp .build/debug/libMyLibrary.dylib ./Sources/MyGame/Project/bin
-
-test:
-	swift build -j 8 --target EscherTests && swift test
