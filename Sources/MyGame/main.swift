@@ -42,7 +42,9 @@ private func registerTypes (level: GDExtension.InitializationLevel) {
     switch level {
     case .core: break
     case .servers: break
-    case .scene: break
+    case .scene:
+        register(type: MyLevel.self)
+    
     case .editor: break
     }
 }
