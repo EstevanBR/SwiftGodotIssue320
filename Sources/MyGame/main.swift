@@ -4,11 +4,14 @@ import SwiftGodot
 import SwiftGodotKit
 
 private func main() {
-    guard let projectPath = Bundle.module.path(forResource: "Project", ofType: nil) else {
-        fatalError("Could not load resource path")
+    guard let packPath = Bundle.module.path(forResource: "Resources/MyGame", ofType: "pck") else {
+        fatalError("Could not load Pack")
     }
+
     runGodot(
-        args: ["--path", projectPath],
+        args: [
+            "--main-pack", packPath
+        ],
         initHook: registerTypes,
         loadScene: loadScene,
         loadProjectSettings: { projectSettings in
@@ -23,7 +26,7 @@ private func loadScene (scene: SceneTree) {
         fatalError("scene.root was nil")
     }
 
-    guard let packedScene = GD.load(path: "my_level.tscn") as? PackedScene else {
+    guard let packedScene = GD.load(path: "Levels/my_level.tscn") as? PackedScene else {
         fatalError("Could not load PackedScene")
     }
 
@@ -36,6 +39,11 @@ private func loadScene (scene: SceneTree) {
     }
 
     root.addChild(node: myLevel)
+    guard let prettyTreeString = scene.root?.getTreeStringPretty() else {
+        return
+    }
+    GD.printDebug(prettyTreeString)
+    print(prettyTreeString)
 }
 
 private func registerTypes (level: GDExtension.InitializationLevel) {

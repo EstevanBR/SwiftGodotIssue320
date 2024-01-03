@@ -28,9 +28,11 @@ let package = Package(
                 .product(name: "SwiftGodot", package: "SwiftGodot"),
                 .product(name: "SwiftGodotKit", package: "SwiftGodotKit"),
             ],
+            exclude: ["Project"],
             resources: [
-                .copy("Project")
-            ]),
+                .copy("Resources")
+            ]
+        ),
         .target(
             name: "MyLibrary",
             dependencies: [

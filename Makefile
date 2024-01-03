@@ -13,3 +13,6 @@ deploy:
 	echo "deploy the new libraries to res://bin"
 	cp .build/debug/libSwiftGodot.dylib ./Sources/MyGame/Project/bin
 	cp .build/debug/libMyLibrary.dylib ./Sources/MyGame/Project/bin
+
+pack:
+	"$(GODOT4)" --headless --path ./Sources/MyGame/Project --export-pack macOS "../Resources/MyGame.pck"
